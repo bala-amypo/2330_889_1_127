@@ -1,3 +1,4 @@
 public interface ComplaintService{
-    public Complaint 
+    public Complaint submitComplaint(ComplaintRequest request);
+    public 
 }
