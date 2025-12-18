@@ -1,5 +1,6 @@
 public interface ComplaintService{
-    public Complaint submitComplaint(ComplaintRequest request);
+    public void submitComplaint(ComplaintRequest request);
     public Complaint getUserComplaints(Long userId);
-    public Complaint
+    public List getPrioritizedComplaints();
+    public void updateCompl
 }
