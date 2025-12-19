@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+
 public class Complaint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
