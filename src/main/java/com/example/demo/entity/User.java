@@ -91,10 +91,10 @@ public class User {
     @OneToMany(mappedBy = "customer")
     private List<Complaint> complaints;
 
-    // ✅ Non-parameterized constructor (required by JPA)
+    //  Non-parameterized constructor (required by JPA)
     public User() {}
 
-    // ✅ Parameterized constructor
+    //  Parameterized constructor
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;

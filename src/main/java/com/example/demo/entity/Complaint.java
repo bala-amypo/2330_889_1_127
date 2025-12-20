@@ -125,10 +125,10 @@ public class Complaint {
     @JoinColumn(name = "customer_id", nullable = false)
     private User customer;
 
-    // ✅ Non-parameterized constructor (required by JPA)
+    //  Non-parameterized constructor (required by JPA)
     public Complaint() {}
 
-    // ✅ Parameterized constructor
+    //  Parameterized constructor
     public Complaint(String title,
                      String description,
                      String category,
