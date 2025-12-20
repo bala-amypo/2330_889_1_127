@@ -4,13 +4,11 @@
 // }
 package com.example.demo.service;
 
-import java.util.Optional;
-
 import com.example.demo.entity.User;
 
 public interface UserService {
 
-    void saveUser(User user);
+    User saveUser(User user);
 
-    Optional<User> findByEmail(String email);
+    User findByEmail(String email);
 }
