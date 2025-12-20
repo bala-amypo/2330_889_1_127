@@ -60,49 +60,39 @@ public class PriorityRule {
 
     @NotBlank
     @Column(nullable = false)
-    private String ruleName;
+    private String category;
+
+    @Min(0)
+    @Column(nullable = false)
+    private Integer baseScore;
 
     @NotBlank
     @Column(nullable = false)
     private String description;
 
-    @Min(0)
-    @Column(nullable = false)
-    private Integer weight;
-
-    @Column(nullable = false)
-    private Boolean active = true;
-
     //  Non-parameterized constructor
     public PriorityRule() {}
 
     //  Parameterized constructor
-    public PriorityRule(String ruleName, String description, Integer weight) {
-        this.ruleName = ruleName;
+    public PriorityRule(String category, Integer baseScore, String description) {
+        this.category = category;
+        this.baseScore = baseScore;
         this.description = description;
-        this.weight = weight;
     }
 
     // Getters & Setters
     public Long getId() { return id; }
 
-    public String getRuleName() { return ruleName; }
-    public void setRuleName(String ruleName) {
-        this.ruleName = ruleName;
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public Integer getBaseScore() { return baseScore; }
+    public void setBaseScore(Integer baseScore) {
+        this.baseScore = baseScore;
     }
 
     public String getDescription() { return description; }
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getWeight() { return weight; }
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) {
-        this.active = active;
     }
 }

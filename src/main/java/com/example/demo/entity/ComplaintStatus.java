@@ -40,62 +40,53 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "priority_rules")
-public class PriorityRule {
+@Table(name = "complaint_status")
+public class ComplaintStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(nullable = false)
-    private String ruleName;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "complaint_id", nullable = false)
+    private Complaint complaint;
 
     @NotBlank
     @Column(nullable = false)
-    private String description;
-
-    @Min(0)
-    @Column(nullable = false)
-    private Integer weight;
+    private String status;
 
     @Column(nullable = false)
-    private Boolean active = true;
+    private LocalDateTime updatedOn;
 
     //  Non-parameterized constructor
-    public PriorityRule() {}
+    public ComplaintStatus() {}
 
     //  Parameterized constructor
-    public PriorityRule(String ruleName, String description, Integer weight) {
-        this.ruleName = ruleName;
-        this.description = description;
-        this.weight = weight;
+    public ComplaintStatus(Complaint complaint, String status) {
+        this.complaint = complaint;
+        this.status = status;
+    }
+
+    @PrePersist
+    public void onUpdate() {
+        this.updatedOn = LocalDateTime.now();
     }
 
     // Getters & Setters
     public Long getId() { return id; }
 
-    public String getRuleName() { return ruleName; }
-    public void setRuleName(String ruleName) {
-        this.ruleName = ruleName;
+    public Complaint getComplaint() { return complaint; }
+    public void setComplaint(Complaint complaint) {
+        this.complaint = complaint;
     }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public Integer getWeight() { return weight; }
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+    public LocalDateTime getUpdatedOn() { return updatedOn; }
 }

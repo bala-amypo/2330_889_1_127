@@ -87,7 +87,7 @@ public class User {
     //  Non-parameterized constructor (JPA)
     public User() {}
 
-    // 🔹 Parameterized constructor
+    //  Parameterized constructor
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
