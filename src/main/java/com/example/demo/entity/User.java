@@ -1,5 +1,5 @@
-package com.example.project.entity;
-// import com.example.project.repository.UserRepository;
+package com.example.demo.entity;
+import com.example.demo.repository.UserRepository;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    
     @Column(unique = true)
     private String email;
     private String password;
