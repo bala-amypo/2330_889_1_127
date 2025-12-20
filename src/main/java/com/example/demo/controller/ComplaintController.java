@@ -1,11 +1,11 @@
-package com.example.project.controller;
+package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.project.service.ComplaintService;
+import com.example.demo.service.ComplaintService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
