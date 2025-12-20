@@ -52,7 +52,7 @@
 //     public String getPassword() { return password; }
 //     public void setPassword(String password) { this.password = password; }
 // }
-package com.example.demo.entity;
+// package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -87,11 +87,19 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    /* Required relation */
+    /* Relation */
     @OneToMany(mappedBy = "customer")
     private List<Complaint> complaints;
 
+    // ✅ Non-parameterized constructor (required by JPA)
     public User() {}
+
+    // ✅ Parameterized constructor
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
     // Getters & Setters
     public Long getId() { return id; }
