@@ -1,9 +1,3 @@
-// public interface ComplaintService{
-//     // public void submitComplaint(ComplaintRequest request);
-//     public Complaint getUserComplaints(Long userId);
-//     public List getPrioritizedComplaints();
-//     public void updateComplaintStatus(Lon id, String status);
-// }
 package com.example.demo.service;
 
 import com.example.demo.entity.Complaint;

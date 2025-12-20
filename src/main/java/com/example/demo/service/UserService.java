@@ -1,7 +1,3 @@
-// public interface UserService{
-//     public void saveUser(User user);
-//     public User findByEmail(String email);
-// }
 package com.example.demo.service;
 
 import com.example.demo.entity.User;
