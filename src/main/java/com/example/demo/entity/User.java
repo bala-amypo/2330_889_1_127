@@ -54,12 +54,11 @@
 // }
 // package com.example.demo.entity;
 
+package com.example.demo.entity;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-
-import java.util.List;
 
 @Entity
 @Table(
@@ -73,7 +72,6 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(min = 2, max = 100)
     @Column(nullable = false)
     private String name;
 
@@ -83,18 +81,13 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(min = 6)
     @Column(nullable = false)
     private String password;
 
-    /* Relation */
-    @OneToMany(mappedBy = "customer")
-    private List<Complaint> complaints;
-
-    //  Non-parameterized constructor (required by JPA)
+    //  Non-parameterized constructor (JPA)
     public User() {}
 
-    //  Parameterized constructor
+    // 🔹 Parameterized constructor
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
@@ -112,6 +105,4 @@ public class User {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-
-    public List<Complaint> getComplaints() { return complaints; }
 }

@@ -75,7 +75,6 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
@@ -88,12 +87,10 @@ public class Complaint {
     private Long id;
 
     @NotBlank
-    @Size(max = 200)
     @Column(nullable = false)
     private String title;
 
     @NotBlank
-    @Size(max = 1000)
     @Column(nullable = false)
     private String description;
 
@@ -101,56 +98,31 @@ public class Complaint {
     @Column(nullable = false)
     private String category;
 
-    @NotBlank
     @Column(nullable = false)
-    private String channel;
-
-    @Column(nullable = false)
-    private Integer priorityScore = 0;
-
-    @Column(nullable = false)
-    private String status;
-
-    @Column(nullable = false)
-    private String severity;
-
-    @Column(nullable = false)
-    private String urgency;
+    private Integer priorityScore;
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime submittedOn;
 
-    /* Relation */
     @ManyToOne(optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private User customer;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    //  Non-parameterized constructor (required by JPA)
+    //  Non-parameterized constructor
     public Complaint() {}
 
     //  Parameterized constructor
-    public Complaint(String title,
-                     String description,
-                     String category,
-                     String channel,
-                     String severity,
-                     String urgency,
-                     User customer) {
+    public Complaint(String title, String description, String category, User user) {
         this.title = title;
         this.description = description;
         this.category = category;
-        this.channel = channel;
-        this.severity = severity;
-        this.urgency = urgency;
-        this.customer = customer;
+        this.user = user;
     }
 
+    // Auto-generate submittedOn
     @PrePersist
-    public void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        if (this.status == null) {
-            this.status = "NEW";
-        }
+    public void onSubmit() {
+        this.submittedOn = LocalDateTime.now();
     }
 
     // Getters & Setters
@@ -165,25 +137,13 @@ public class Complaint {
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
 
-    public String getChannel() { return channel; }
-    public void setChannel(String channel) { this.channel = channel; }
-
     public Integer getPriorityScore() { return priorityScore; }
     public void setPriorityScore(Integer priorityScore) {
         this.priorityScore = priorityScore;
     }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public LocalDateTime getSubmittedOn() { return submittedOn; }
 
-    public String getSeverity() { return severity; }
-    public void setSeverity(String severity) { this.severity = severity; }
-
-    public String getUrgency() { return urgency; }
-    public void setUrgency(String urgency) { this.urgency = urgency; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-
-    public User getCustomer() { return customer; }
-    public void setCustomer(User customer) { this.customer = customer; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }
