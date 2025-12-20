@@ -33,8 +33,7 @@ public class ComplaintController {
     }
 
     @PutMapping("/status/{id}")
-    public ResponseEntity<Void> updateStatus(@PathVariable Long id,
-                                             @RequestParam String status) {
+    public ResponseEntity<Void> updateStatus(@PathVariable Long id, @RequestParam String status) {
         complaintService.updateComplaintStatus(id, status);
         return ResponseEntity.ok().build();
     }
