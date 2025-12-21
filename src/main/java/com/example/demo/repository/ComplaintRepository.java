@@ -10,6 +10,6 @@ import com.example.demo.entity.User;
 public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
 
     List<Complaint> findByCustomer(User customer);
-
+    List<Complaint> findByCustomerId(Long C)
     List<Complaint> findAllOrderByPriorityScoreDescCreatedAtAsc();
 }

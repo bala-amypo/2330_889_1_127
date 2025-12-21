@@ -16,6 +16,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    @Override
     public User registerCustomer(String fullName, String email, String password) {
         User user = new User();
         user.setFullName(fullName);
@@ -25,13 +36,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
     public User login(String email, String password) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+        User user = findByEmail(email);
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid credentials");
+        }
+        return user;
     }
 }
