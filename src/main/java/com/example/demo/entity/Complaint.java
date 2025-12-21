@@ -62,13 +62,6 @@ public void setPriorityScore(int priorityScore) {
     this.priorityScore = priorityScore;
 }
 
-public User getCustomer() {
-    return customer;
-}
-
-public void setCustomer(User customer) {
-    this.customer = customer;
-}
 
 public String getStatus() {
     return status;
