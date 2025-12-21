@@ -129,4 +129,29 @@ public class Complaint {
 
     public void setChannel(String channel) { this.channel = channel; }
     public List<PriorityRule> getPriorityRules() { return priorityRules; }
+
+    public String getCategory() {
+    return category;
+}
+
+public void setPriorityScore(int priorityScore) {
+    this.priorityScore = priorityScore;
+}
+
+public User getCustomer() {
+    return customer;
+}
+
+public void setCustomer(User customer) {
+    this.customer = customer;
+}
+
+public String getStatus() {
+    return status;
+}
+
+public void setStatus(String status) {
+    this.status = status;
+}
+
 }
