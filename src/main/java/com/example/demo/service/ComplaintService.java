@@ -16,17 +16,17 @@
 // }
 package com.example.demo.service;
 
+import java.util.List;
 import com.example.demo.entity.Complaint;
 import com.example.demo.entity.User;
 
-import java.util.List;
-
 public interface ComplaintService {
 
-    Complaint submitComplaint(Complaint complaint);
+    Complaint createComplaint(Complaint complaint);
 
-    List<Complaint> getUserComplaints(Long userId);
-
-    // test-required
     List<Complaint> getComplaintsForUser(User user);
+
+    List<Complaint> getPrioritizedComplaints();
+
+    Complaint updateComplaintStatus(Long complaintId, String status);
 }
