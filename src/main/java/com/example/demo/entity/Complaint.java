@@ -62,12 +62,7 @@ public void setPriorityScore(int priorityScore) {
     this.priorityScore = priorityScore;
 }
 
-
-public String getStatus() {
-    return status;
-}
-
-public void setStatus(String status) {
+public void setStatus(Status status) {
     this.status = status;
 }
 
