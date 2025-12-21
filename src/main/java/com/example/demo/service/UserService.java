@@ -8,7 +8,7 @@
 
 //     User findByEmail(String email);
 // }
-ppackage com.example.demo.service;
+package com.example.demo.service;
 
 import com.example.demo.entity.User;
 
