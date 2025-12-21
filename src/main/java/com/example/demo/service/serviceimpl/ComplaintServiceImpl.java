@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Complaint;
-import com.example.demo.entity.User;
 import com.example.demo.repository.ComplaintRepository;
 import com.example.demo.service.ComplaintService;
 
@@ -19,25 +18,28 @@ public class ComplaintServiceImpl implements ComplaintService {
     }
 
     @Override
-    public Complaint createComplaint(Complaint complaint) {
+    public Complaint submitComplaint(Complaint complaint) {
         return complaintRepository.save(complaint);
     }
 
     @Override
-    public List<Complaint> getComplaintsForUser(User user) {
-        return complaintRepository.findByCustomer(user);
+    public List<Complaint> getUserComplaints(Long userId) {
+        return complaintRepository.findByCustomerId(userId);
     }
 
     @Override
     public List<Complaint> getPrioritizedComplaints() {
-        return complaintRepository.findAllOrderByPriorityScoreDescCreatedAtAsc();
+        return complaintRepository.findAll();
     }
 
     @Override
-    public Complaint updateComplaintStatus(Long complaintId, String status) {
-        Complaint complaint = complaintRepository.findById(complaintId)
+    public Complaint updateComplaintStatus(Long id, String status) {
+        Complaint complaint = complaintRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Complaint not found"));
-        complaint.setStatus(status);
+
+        //  THIS FIXES YOUR ENUM ERROR
+        complaint.setStatus(Complaint.Status.valueOf(status));
+
         return complaintRepository.save(complaint);
     }
 }
