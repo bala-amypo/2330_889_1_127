@@ -100,4 +100,13 @@ public class User {
 
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
+
+    public void setId(Long id) {
+    this.id = id;
+}
+
+public void setFullName(String fullName) {
+    this.fullName = fullName;
+}
+
 }
