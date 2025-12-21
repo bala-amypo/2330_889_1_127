@@ -1,6 +1,23 @@
+// package com.example.demo.service;
+
+// import com.example.demo.entity.Complaint;
+
+// import java.util.List;
+
+// public interface ComplaintService {
+
+//     Complaint submitComplaint(Complaint complaint);
+
+//     List<Complaint> getUserComplaints(Long userId);
+
+//     List<Complaint> getPrioritizedComplaints();
+
+//     Complaint updateComplaintStatus(Long id, String status);
+// }
 package com.example.demo.service;
 
 import com.example.demo.entity.Complaint;
+import com.example.demo.entity.User;
 
 import java.util.List;
 
@@ -10,7 +27,6 @@ public interface ComplaintService {
 
     List<Complaint> getUserComplaints(Long userId);
 
-    List<Complaint> getPrioritizedComplaints();
-
-    Complaint updateComplaintStatus(Long id, String status);
+    // test-required
+    List<Complaint> getComplaintsForUser(User user);
 }
