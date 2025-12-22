@@ -12,16 +12,7 @@ import com.example.demo.service.PriorityRuleService;
 @Service
 public class PriorityRuleServiceImpl implements PriorityRuleService {
 
-    private final PriorityRuleRepository priorityRuleRepository;
-
-    public PriorityRuleServiceImpl(PriorityRuleRepository priorityRuleRepository) {
-        this.priorityRuleRepository = priorityRuleRepository;
-    }
-
-    @Override
-    public List<PriorityRule> getAllRules() {
-        return priorityRuleRepository.findAll();
-    }
+    =
 
     @Override
     public List<PriorityRule> getActiveRules() {
