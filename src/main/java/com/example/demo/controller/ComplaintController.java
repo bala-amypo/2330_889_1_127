@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Complaint;
-import com.example.demo.service.ComplaintService;
-import org.springframework.http.ResponseEntity;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.example.demo.dto.ComplaintRequest;
+import com.example.demo.entity.Complaint;
+import com.example.demo.entity.User;
+import com.example.demo.service.ComplaintService;
 
 @RestController
 @RequestMapping("/complaints")
@@ -17,24 +19,13 @@ public class ComplaintController {
         this.complaintService = complaintService;
     }
 
-    @PostMapping("/submit")
-    public ResponseEntity<Complaint> submit(@RequestBody Complaint complaint) {
-        return ResponseEntity.ok(complaintService.submitComplaint(complaint));
+    @PostMapping
+    public Complaint submit(@RequestBody ComplaintRequest request, @RequestAttribute User user) {
+        return complaintService.submitComplaint(request, user);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Complaint>> getUserComplaints(@PathVariable Long userId) {
-        return ResponseEntity.ok(complaintService.getUserComplaints(userId));
-    }
-
-    @GetMapping("/prioritized")
-    public ResponseEntity<List<Complaint>> getPrioritized() {
-        return ResponseEntity.ok(complaintService.getPrioritizedComplaints());
-    }
-
-    @PutMapping("/status/{id}")
-    public ResponseEntity<Void> updateStatus(@PathVariable Long id, @RequestParam String status) {
-        complaintService.updateComplaintStatus(id, status);
-        return ResponseEntity.ok().build();
+    @GetMapping
+    public List<Complaint> myComplaints(@RequestAttribute User user) {
+        return complaintService.getComplaintsForUser(user);
     }
 }
