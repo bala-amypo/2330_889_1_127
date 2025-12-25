@@ -8,12 +8,9 @@ import com.example.demo.entity.User;
 
 public interface ComplaintService {
 
-    // REQUIRED by tests
     Complaint submitComplaint(ComplaintRequest request, User customer);
 
-    // REQUIRED by tests
     List<Complaint> getComplaintsForUser(User user);
 
-    // REQUIRED by tests
     List<Complaint> getPrioritizedComplaints();
 }
