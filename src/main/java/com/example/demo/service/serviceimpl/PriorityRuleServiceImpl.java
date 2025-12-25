@@ -12,17 +12,37 @@ import com.example.demo.service.PriorityRuleService;
 @Service
 public class PriorityRuleServiceImpl implements PriorityRuleService {
 
-    =
+    private final PriorityRuleRepository priorityRuleRepository;
+
+    public PriorityRuleServiceImpl(PriorityRuleRepository priorityRuleRepository) {
+        this.priorityRuleRepository = priorityRuleRepository;
+    }
+
+    @Override
+    public List<PriorityRule> getAllRules() {
+        List<PriorityRule> rules = priorityRuleRepository.findAll();
+        return rules;
+    }
 
     @Override
     public List<PriorityRule> getActiveRules() {
-        return priorityRuleRepository.findByActiveTrue();
+        List<PriorityRule> activeRules = priorityRuleRepository.findByActiveTrue();
+        return activeRules;
     }
 
     @Override
     public int computePriorityScore(Complaint complaint) {
-        return getActiveRules().stream()
-                .mapToInt(PriorityRule::getWeight)
-                .sum();
+
+        int score = 0;
+
+        List<PriorityRule> rules = getActiveRules();
+
+        if (rules != null) {
+            for (PriorityRule rule : rules) {
+                score = score + rule.getWeight();
+            }
+        }
+
+        return score;
     }
 }
