@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.PriorityRule;
 import com.example.demo.service.PriorityRuleService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,16 +10,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/rules")
 public class PriorityRuleController {
-
+    
     private final PriorityRuleService priorityRuleService;
-
+    
     public PriorityRuleController(PriorityRuleService priorityRuleService) {
         this.priorityRuleService = priorityRuleService;
     }
-
-    // GET /rules/all
+    
     @GetMapping("/all")
-    public List<PriorityRule> getAllRules() {
-        return priorityRuleService.getAllRules();
+    public ResponseEntity<List<PriorityRule>> getAllRules() {
+        List<PriorityRule> rules = priorityRuleService.getActiveRules();
+        return ResponseEntity.ok(rules);
     }
 }

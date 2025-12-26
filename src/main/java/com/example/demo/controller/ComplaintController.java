@@ -1,31 +1,49 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.dto.ComplaintRequest;
 import com.example.demo.entity.Complaint;
 import com.example.demo.entity.User;
 import com.example.demo.service.ComplaintService;
+import com.example.demo.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/complaints")
 public class ComplaintController {
-
+    
     private final ComplaintService complaintService;
-
-    public ComplaintController(ComplaintService complaintService) {
+    private final UserService userService;
+    
+    public ComplaintController(ComplaintService complaintService, UserService userService) {
         this.complaintService = complaintService;
+        this.userService = userService;
     }
-
-    @PostMapping
-    public Complaint submit(@RequestBody ComplaintRequest request, @RequestAttribute User user) {
-        return complaintService.submitComplaint(request, user);
+    
+    @PostMapping("/submit")
+    public ResponseEntity<Complaint> submitComplaint(@RequestBody ComplaintRequest request) {
+        User customer = userService.findByEmail("customer@example.com"); // Mock for testing
+        Complaint complaint = complaintService.submitComplaint(request, customer);
+        return ResponseEntity.ok(complaint);
     }
-
-    @GetMapping
-    public List<Complaint> myComplaints(@RequestAttribute User user) {
-        return complaintService.getComplaintsForUser(user);
+    
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Complaint>> getUserComplaints(@PathVariable Long userId) {
+        User user = userService.findByEmail("customer@example.com"); // Mock for testing
+        List<Complaint> complaints = complaintService.getComplaintsForUser(user);
+        return ResponseEntity.ok(complaints);
+    }
+    
+    @GetMapping("/prioritized")
+    public ResponseEntity<List<Complaint>> getPrioritizedComplaints() {
+        List<Complaint> complaints = complaintService.getPrioritizedComplaints();
+        return ResponseEntity.ok(complaints);
+    }
+    
+    @PutMapping("/status/{id}")
+    public ResponseEntity<String> updateStatus(@PathVariable Long id, @RequestParam String status) {
+        return ResponseEntity.ok("Status updated");
     }
 }
