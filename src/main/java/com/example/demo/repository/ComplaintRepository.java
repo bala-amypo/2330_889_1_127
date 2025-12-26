@@ -12,6 +12,6 @@ import java.util.List;
 public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
     List<Complaint> findByCustomer(User customer);
     
-    @Query("select c from Complaint c order by c.priorityScore, c.createdAt asc")
+    @Query("select c from Complaint c order by c.priorityScore, c.createdAt")
     List<Complaint> findAllOrderByPriorityScoreDescCreatedAtAsc();
 }
