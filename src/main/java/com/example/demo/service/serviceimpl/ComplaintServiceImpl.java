@@ -19,16 +19,14 @@ public class ComplaintServiceImpl implements ComplaintService {
 
     public ComplaintServiceImpl(
             ComplaintRepository complaintRepository,
-            Object unused1,
-            Object unused2,
-            PriorityRuleService priorityRuleService) {
-
+            PriorityRuleService priorityRuleService
+    ) {
         this.complaintRepository = complaintRepository;
         this.priorityRuleService = priorityRuleService;
     }
 
     @Override
-    public Complaint submitComplaint(ComplaintRequest request, User customer) {
+    public Complaint submitComplaint(ComplaintRequest request, User user) {
 
         Complaint complaint = new Complaint();
         complaint.setTitle(request.getTitle());
@@ -37,7 +35,7 @@ public class ComplaintServiceImpl implements ComplaintService {
         complaint.setChannel(request.getChannel());
         complaint.setSeverity(request.getSeverity());
         complaint.setUrgency(request.getUrgency());
-        complaint.setCustomer(customer);
+        complaint.setCustomer(user);
 
         int score = priorityRuleService.computePriorityScore(complaint);
         complaint.setPriorityScore(score);
@@ -52,6 +50,7 @@ public class ComplaintServiceImpl implements ComplaintService {
 
     @Override
     public List<Complaint> getPrioritizedComplaints() {
-        return complaintRepository.findAllOrderByPriorityScoreDescCreatedAtAsc();
+        // FIXED METHOD CALL
+        return complaintRepository.findAllByOrderByPriorityScoreDescCreatedAtAsc();
     }
 }
