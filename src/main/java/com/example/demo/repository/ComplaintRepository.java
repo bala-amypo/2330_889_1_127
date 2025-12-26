@@ -11,5 +11,8 @@ public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
 
     List<Complaint> findByCustomer(User customer);
 
-    List<Complaint> findAllOrderByPriorityScoreDescCreatedAtAsc();
+    List<Complaint> findByCustomerId(Long customerId);
+
+    // FIXED METHOD NAME
+    List<Complaint> findAllByOrderByPriorityScoreDescCreatedAtAsc();
 }
