@@ -18,6 +18,7 @@ public class ComplaintServiceImpl implements ComplaintService {
     private final PriorityRuleService priorityRuleService;
     private final UserService userService;
     
+    @Autowired
     public ComplaintServiceImpl(ComplaintRepository complaintRepository, 
                                UserService userService,
                                ComplaintService complaintService,
