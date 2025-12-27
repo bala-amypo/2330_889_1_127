@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;//
 import com.example.demo.dto.ComplaintRequest;
 import com.example.demo.entity.Complaint;
 import com.example.demo.entity.User;
@@ -21,12 +21,12 @@ public class ComplaintServiceImpl implements ComplaintService {
     
     @Autowired
     public ComplaintServiceImpl(ComplaintRepository complaintRepository, 
-                               UserService userService,
-                               ComplaintService complaintService,
+                               UserService userService,//
+                               ComplaintService complaintService,//
                                PriorityRuleService priorityRuleService) {
         this.complaintRepository = complaintRepository;
         this.priorityRuleService = priorityRuleService;
-        this.userService = userService;
+        this.userService = userService;//
         //this.userService = null;
     }
     
