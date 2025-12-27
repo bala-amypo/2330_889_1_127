@@ -21,13 +21,13 @@ public class ComplaintServiceImpl implements ComplaintService {
     
     @Autowired
     public ComplaintServiceImpl(ComplaintRepository complaintRepository, 
-                               //UserService userService,//
-                               //ComplaintService complaintService,//
+                               UserService userService,//
+                               ComplaintService complaintService,//
                                PriorityRuleService priorityRuleService) {
         this.complaintRepository = complaintRepository;
         this.priorityRuleService = priorityRuleService;
-       // this.userService = userService;//
-        this.userService = null;//
+        this.userService = userService;//
+        //this.userService = null;//
     }
     
     @Override
